@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ListItem from '@/components/ListItem'
+  import ListItem from 'src/components/ListItem'
   export default {
     name: '',
     components: {ListItem},

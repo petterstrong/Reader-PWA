@@ -28,6 +28,8 @@
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
     <%= htmlWebpackPlugin.options.flexibleLoader %>
+    <!-- weixin mini program configure -->
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
   </head>
   <style>
     *,::after,::before {
@@ -258,10 +260,10 @@
       text-align: center;
     }
     .footer .footerTab img {
-      width: .6rem;
-      width: 6vw;
-      height: .6rem;
-      height: 6vw;
+      width: .75rem;
+      width: 7.5vw;
+      height: .75rem;
+      height: 7.5vw;
     }
     .footer .footerTab span {
       display: block;
@@ -276,8 +278,8 @@
       </section>
       <div class="spinner"></div>
       <footer class="footer">
-        <a href="/" class="footerTab"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAABLElEQVQ4T9WU4U0CQRCFPyoQKlAqkA6gBErADiwBO7ADoANKwArACtQKxAo0XzJDJscSQsQfTrK53b3Zd+/NzrseV4xewboDboGXC/AnwHsMEmwGLDogO2AP+FzF3Jw+MOrkPgDLBNu4iGGiB2TqcD0GhsBjgPuRZDQHZDipYG4K2opvOKjovj8JlnWrB56ABPOg84yPYN9kpqRpSVaK0j6BQZTBEmSsoyR/L/OqNbMm3lwNL8k6KVO5NexJCfwzmd7kfdFhc9rdeZvpgExJ6zVldq0i2HPpM9uktoZWs52OwDxk3/zaAfpSeYKluQVVhq54K3aShbebHrY0r8AsvSl1JZhomHhTKPrXkPk29r7C8C5tDd/t6/+sJU9WfsjaGM5l3oxzYKfONfd/AIldWRTELFHvAAAAAElFTkSuQmCC" alt=""> <span>首页</span></a>
-        <a href="/profile" class="footerTab"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAABPElEQVQ4T62UfXECMRBHHw6oAsABKCh1QB3gAKqA1kEdFBwUBRQFgAKQUAftvE7uJpcmd/cHO5OZG9h9+8t+ZMAdbdCDNQZGwAX4bvNvgy2BDSCssjPwBnzmoCXYFlgAr4DfKhJqgjXwAbykwBxMgAFzQCWpTYGvAG4oTGFD4Ao8h4BSiUy2AiaxQwrzGiqL61QCenVLoco/S2GCvJ6ny4R4jCnCrIkZu6wTZi0E9VF2C00oXtNa2QALq3PJTHYAHuJBzo2G7f4JHc3B7LggN8KG1ZaD6ex8ncJgxgpV7sCqSHWN9SptgEFO/iMwC3AbY4J9UPRvT0swAwW9A09hBFSiKn875rYjN7TVchtgdjvsVVXrd5XIUgje5eZMRwdQB0/bcxMvfRXT2AALr7W+WUl7GzF9HseuTaj//wUamEIUSSt5OgAAAABJRU5ErkJggg==" alt=""> <span>我的</span></a>
+        <a href="/" class="footerTab"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAD/klEQVRoQ+2aTUwTQRTH3+xCP4gY7wIJXEzERG7i1egBowcPnBoGSgxERE28eevNm4lfGIih7RBOHDxo9KDxKtwwERMvkADejTW0u7AdM2u3Dsu20+nOdtume2nSmZ33fu/9Z97u7CBo4YvOzZ1i7qOFhT+VMFAL84GRTJ5n/kfT6e9tCWhi/ICBRQh52naANJXSzO3trzbg0NBFlEoVvSA9JUqnp3ttbS8v55pVwoXJybtA6QvbP4TmY9nsy5oBDYxv2dom5E0zAh4mk1csy/rAklfyz9R1faw7nf7s9vdEBunU1BmzWFy3U69poyiT+dUskEyWxs7OHaD0CQfnuGcCQg+jg4OveLmWAZkszaOjqwDwmAKcszMP8AMAHkW6uj6FJVdWCsx8fgBZ1jUKcJsCXKgWcATwDQG8prr+MRKP79YMCLmccRiPz1CEEkDpMAWw56mqCwHkAKEtROlqdz6/hNbWTDa2MkDHUS+JHmB8VgN4BwAjqoAE42wWAW70EPKT7+dLovxA/CJDx8cjRjy+0UA4x5XNaD5/yckk75+vRcaWBVcmTIzniwDPG5S5Y2Y0gHsRQv6VAtflq0wcy+bk5BdK6ajzHwJ4H7GsWbS6uq8SmiYSfaauL1KA62VbCK1Hs9nLXnZ8FXqXXH/zC0rUsvpVw5XnfyLRZ+j6HhfMXJSQ05UCqeRRrYAx5Q3ECAn0AV3GnpKHbRmDKiQrY0/J65KMwSAAebl61UmRTaHcmgXQBeJZJ71gfQMWMB4DgEUA6BdF09XOFpPZGCHsobl8uQNaZcyKdZK/RwXgbh1wjg97MUIG6gSEanWSk3b1uIskWsA4UEBn1ZatkyoBA5UoX5YYpEydZJC+JSo574Tda1CMVF3uAIoiKkyJZAeRPVG721wng6KIBV0H3c++In+UZ7BRZcJxvAPoSqHvOdj2EpVcJIXdRRIUtSufg0KPJTuIAETtHUB3BGQjJpmwE91F9kTtyjMosch4vv/JBjQMQJnXpRPvfx1A1y5eGBms9X2wNSXqd1HxkCgveeGWhmif1veTTACAjiLY0MJNqZYDFAWs4XNQ5JDqduWABsYN+/giCkYgm05Ggz6f1QIn83mt6rYh/1EjzA+gIui6N34PJiYuscF7VlY2QvyELeKrf+u+gPEzNnqMkPvsN4RDCEI4r0MKXjedqIPm1NRIsXQQSNO00Ugms8luZJkM8hiJiKjSMZMa7vvfpQT3FgD6Sv/ua5p204EUDdaM7YgtKPlcblhjB3wAZtgRNZejBgAsFSldjff2blU7fNoBDCECx+ZgW0rUHdRKi0wIwVdi0vNtwl0mlFgKaRBPQL7Qh+SXMrPeR5prOK6vzIOAB/oLTX8eJHa9CBoAAAAASUVORK5CYII=" role="tab" alt="tab"><span>首页</span></a>
+        <a href="/profile" class="footerTab"><img src="data:image/png;base64,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" role="profile" alt="tab"><span>我的</span></a>
       </footer>
     </div>
     <!-- Todo: only include in production -->

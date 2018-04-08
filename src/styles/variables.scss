@@ -1,0 +1,23 @@
+// item
+$base-theme: #F56368;
+$base-item-padding: 32;
+$base-item-title-font-size: 34;
+$base-item-title-font-color: #050505;
+$base-item-title-lh: 48;
+$base-item-image-height: 152;
+$base-item-image-width: 222;
+$base-item-banner-height: 380;
+$base-item-border-depth: 2;
+$base-item-border-color: #E8E8E8;
+$base-item-media-mr: 54;
+
+//
+$base-article-bg: #F5F5F5;
+$base-article-front-color: #999999;
+
+
+@function px2rem ($px) {
+  @return($px / 75) * 1rem;
+}
+
+

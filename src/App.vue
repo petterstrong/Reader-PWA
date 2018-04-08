@@ -3,12 +3,12 @@
     <main>
       <router-view></router-view>
     </main>
-    <foot/>
+    <foot v-if="$route.meta.root"/>
   </div>
 </template>
 
 <script>
-import Foot from '@/components/layout/Footer.vue'
+import Foot from 'src/components/layout/Footer.vue'
 export default {
   name: 'app',
   components: {Foot}
@@ -16,5 +16,4 @@ export default {
 </script>
 
 <style type="text/scss" lang="scss">
-
 </style>

@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+html, body {
+  height: 100%;
+}
+body.gray {
+  background-color: $base-article-bg;
+}
+
+#app {
+  height: 100%;
+}
+main {
+  height: 100%;
+}
+
+a.router-active {
+  color: $base-theme;
+}
