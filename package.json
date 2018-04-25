@@ -9,7 +9,7 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "sync": "npm run build && rsync -avz ./dist/ ming@www.firstzhang.com:~/frontend/MomReader/dist/"
+    "sync": "npm run build && rsync -avz ./dist/ zm@wx.test.xinshu.me:~/Mou/dist/"
   },
   "dependencies": {
     "vue": "^2.5.2",

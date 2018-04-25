@@ -1,54 +1,92 @@
 <template>
   <div class="viewer">
-    <iframe src="https://wx.gui-quan.com/link?url=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2FgysxAP2K8a90Tx80SCLiJg"
-            frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"
-            id="web-view"></iframe>
-    <div class="article-recommends">
+    <div id="viewer_content" v-html="content"></div>
+    <div class="article-recommends" v-if="false">
       <h3>相关推荐</h3>
-      <item @tap="tapHandler"></item>
+      <item></item>
     </div>
-    <div class="articles-entry">
+    <div class="articles-entry" v-if="false">
       <h3>
         <span>广告</span>
       </h3>
       <div class="entry-content"></div>
     </div>
+    <popup :show="shareModal" :showClose="false" @close="shareModal = false" >
+      <div class="share-content" slot="body">
+        <div class="share-cover">
+          <img src="../../static/img/icons/guide.png" alt="guide">
+        </div>
+        <div class="share-tip">
+          请在微信小程序搜索
+          <p>“妈咪爱看”</p>
+        </div>
+        <div class="qr_code">
+          <img src="http://o7diglftu.qnssl.com/media/upload/Fvc74KyID7iAyQvOsvyiYk8uYPng" alt="">
+          <div class="qr_code-desc">
+            <h3>长按识别二维码</h3>
+            <p>进入 <b class="text-primary">“妈咪爱看”</b></p>
+          </div>
+        </div>
+      </div>
+    </popup>
     <div class="article-actions">
-      <div class="action-item" role="tab">
-        <img src="../../static/img/icons/ic_like@2x.png" alt="like">
-        <p>1329</p>
-      </div>
-      <div class="action-item" role="tab">
-        <img src="../../static/img/icons/Group-3@2x.png" alt="like">
-        <p>1329</p>
-      </div>
-      <div class="action-item" role="tab">
-        <img src="../../static/img/icons/Group-5@2x.png" alt="like">
-        <p>1329</p>
+      <div class="action-item " role="tab" @click="shareModal = true">
+        <img src="../../static/img/icons/home.png" alt="like">
+        <p>返回首页</p>
       </div>
     </div>
+    <toast message="加载中..." :value="loading" :lock="true" closeable>
+      <div class="loading-icon text-loading">
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </div>
+    </toast>
   </div>
 </template>
 
 <script>
   import Item from 'src/components/Item.vue'
+  import Popup from 'src/components/Popup.vue'
+  import Toast from 'src/components/common/Toast/Toast.vue'
+  import api from 'src/api'
   export default {
     name: '',
-    components: {Item},
+    components: {Item, Popup, Toast},
     data () {
-      return {}
+      return {
+        url: '',
+        showModal: false,
+        shareModal: false,
+        content: '',
+        loading: false
+      }
     },
     created () {},
     mounted () {
+      let {url} = this.$route.query
       document.body.classList.add('gray')
+      if (url) {
+        this.fetchArticle(url)
+      }
     },
     destroyed () {
       document.body.classList.remove('gray')
     },
     methods: {
-      tapHandler () {
-        wx.miniProgram.navigateTo({
-          url: './pages/profile'
+      sendInvitation () {
+      },
+      shareContent () {
+        this.showModal = true
+      },
+      getShareCover () {
+        this.showModal = false
+        this.shareModal = true
+      },
+      fetchArticle (url) {
+        this.loading = true
+        url = encodeURIComponent(url)
+        api.fetchArticle(url).then(data => {
+          this.content = data
+          this.loading = false
         })
       }
     }
@@ -57,65 +95,6 @@
 
 <style type="text/scss" lang="scss">
   @import '../styles/variables';
-  .viewer {
-    height: 100%;
-  }
-  #web-view {
-    width: 100%;
-    height: auto;
-  }
-  .article-recommends h3, .articles-entry h3 {
-    color: $base-article-front-color;
-    font-size: px2rem(32);
-    padding: px2rem(24) px2rem($base-item-padding);
-  }
-  .articles-entry {
-    padding: 0 px2rem($base-item-padding) px2rem($base-item-padding);
-    margin-bottom: px2rem(220);
-    h3 {
-      text-align: center;
-      position: relative;
-      &:before {
-        content: '';
-        position: absolute;
-        height: px2rem(2);
-        left: 0;
-        width: 100%;
-        top: 50%;
-        background-color: $base-item-border-color;
-      }
-      span {
-        position: relative;
-        padding: 0 px2rem(8);
-        z-index: 2;
-        background-color: $base-article-bg;
-      }
-    }
-    .entry-content {
-      height: px2rem(380);
-      background-color: white;
-      border-radius: px2rem(8);
-    }
-  }
-  .article-actions {
-    position: fixed;
-    background-color: #fff;
-    display: flex;
-    height: px2rem(100);
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    padding-top: px2rem(12);
-    color: #b8b8b8;
-    font-size: px2rem(24);
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,.25);
-    img {
-      height: px2rem(48);
-    }
-    .action-item {
-      flex: 1;
-    }
-  }
+  @import '../styles/article';
+  @import '../styles/content';
 </style>

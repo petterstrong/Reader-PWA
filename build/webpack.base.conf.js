@@ -27,6 +27,9 @@ module.exports = {
       'src': resolve('src')
     }
   },
+  externals: {
+    'axios': 'axios'
+  },
   module: {
     rules: [
       {

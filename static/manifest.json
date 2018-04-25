@@ -3,13 +3,18 @@
   "short_name": "mou",
   "icons": [
     {
-      "src": "/static/img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/static/img/icons/logo-46×46.png",
+      "sizes": "46x46",
       "type": "image/png"
     },
     {
-      "src": "/static/img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/static/img/icons/logo-92×92.png",
+      "sizes": "92x92",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/img/icons/logo-138×138.png",
+      "sizes": "92x92",
       "type": "image/png"
     }
   ],

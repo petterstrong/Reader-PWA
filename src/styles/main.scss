@@ -17,3 +17,56 @@ main {
 a.router-active {
   color: $base-theme;
 }
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .article-actions {
+    padding-bottom: px2rem(34);
+  }
+}
+
+@media only screen and (width: 375px) and (height: 690px){
+  body {
+    background: blue;
+  }
+}
+
+.loading-icon {
+  animation: ani-load-loop 1s infinite linear;
+}
+
+@keyframes ani-load-loop {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.text-primary {
+  color: $base-theme!important;
+}
+
+.text-mini {
+  font-size: 12px!important;
+}
+.text-normal {
+  font-size: 14px!important;
+}
+.text-large {
+  font-size: 16px!important;
+}
+
+.text-larger {
+  font-size: 18px!important;
+}
+
+.text-xl {
+  font-size: 24px!important;
+}
+.text-loading {
+  font-size: 34px!important;
+}

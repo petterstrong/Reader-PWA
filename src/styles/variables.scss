@@ -11,9 +11,19 @@ $base-item-border-depth: 2;
 $base-item-border-color: #E8E8E8;
 $base-item-media-mr: 54;
 
+$color-success: #52c41a;
+$color-error: #FE898A;
+$color-warning: #FFD156;
+$color-info: #CEE8F4;
+$color-text-fb: #3b5998;
+$color-text-ins: #D83C6B;
+
 //
 $base-article-bg: #F5F5F5;
 $base-article-front-color: #999999;
+
+
+$dp-2: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 
 
 @function px2rem ($px) {
